@@ -1,0 +1,118 @@
+cabal-version: 3.0
+name: terminal-coffkell
+version: 0.1.0.0
+license-file: LICENSE
+author: Simon Kohlmeyer
+maintainer: void@wthack.de
+copyright: (c)
+build-type: Simple
+extra-doc-files: CHANGELOG.md
+
+-- extra-source-files:
+flag dev
+  description: Enable development time features and checks
+  default: False
+  manual: True
+
+common shared-properties
+  if flag(dev)
+    ghc-options:
+      -- -Wno-unused-imports
+      -- -Wno-unused-packages
+      -Wwarn
+      -fdefer-typed-holes
+      -fdefer-type-errors
+      -fdefer-out-of-scope-variables
+  ghc-options:
+    -- -Wno-implicit-prelude
+    -- -Wno-missing-export-lists
+    -- -Wno-missing-import-lists
+    -- -Wno-missing-kind-signatures
+    -- -Wno-all-missed-specialisations
+    -- -Wno-missing-safe-haskell-mode
+    -- -Wno-monomorphism-restriction
+    -- -Wno-unsafe
+    -Wall
+    -Werror=missing-fields
+    -Werror=incomplete-patterns
+    -Werror=incomplete-record-updates
+    -Werror=incomplete-uni-patterns
+    -Werror=partial-fields
+
+  build-depends:
+    base,
+    bytestring,
+    mtl,
+    placeholders,
+    relude,
+    text,
+
+  default-language: GHC2021
+  mixins:
+    base hiding (Prelude),
+    relude (Relude as Prelude),
+    relude,
+
+  default-extensions:
+    ApplicativeDo
+    BlockArguments
+    DataKinds
+    DeriveAnyClass
+    DerivingStrategies
+    DerivingVia
+    DisambiguateRecordFields
+    DuplicateRecordFields
+    LambdaCase
+    NoFieldSelectors
+    OverloadedRecordDot
+    OverloadedStrings
+    RecordWildCards
+    TemplateHaskell
+    TypeFamilies
+
+library
+  import: shared-properties
+  -- cabal-gild: discover src
+  exposed-modules:
+    Foo
+    Yum
+
+  -- other-modules:
+  -- other-extensions:
+  hs-source-dirs: src
+  build-depends:
+    HaTeX,
+    aeson,
+    attoparsec,
+    containers,
+    process,
+    deriving-aeson,
+    filepath,
+    http-client,
+    http-client-tls,
+    http-media,
+    http-types,
+    iso8601-time,
+    package-version,
+    prettyprinter,
+    servant,
+    servant-client,
+    servant-client-core,
+    servant-conduit,
+    template-haskell,
+
+test-suite test
+  import: shared-properties
+  -- other-modules:
+  -- other-extensions:
+  type: exitcode-stdio-1.0
+  hs-source-dirs: test
+  main-is: MainShim.hs
+  -- main-is: Spec.hs
+  -- cabal-gild: discover test --exclude=test/MainShim.hs
+  other-modules:
+    Discover
+    Spec
+
+  build-depends:
+    terminal-coffkell

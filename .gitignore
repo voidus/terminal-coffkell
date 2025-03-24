@@ -1,0 +1,6 @@
+/.direnv/
+/dist-newstyle/
+*.log
+*.aux
+*.tex
+*.pdf

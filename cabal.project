@@ -1,0 +1,3 @@
+packages: .
+-- multi-repl: true
+test-show-details: direct

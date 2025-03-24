@@ -1,0 +1,4 @@
+--warnings
+-c "cabal repl -fdev --repl-options=-fdiagnostics-color=always --repl-options=-fbyte-code --repl-options=-fno-break-on-exception --repl-options=-fno-break-on-error --repl-options=-v1 --repl-options=-ferror-spans --repl-options=-j lib:terminal-coffkell
+--restart=*.cabal
+--color=always
