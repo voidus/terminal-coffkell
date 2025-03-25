@@ -86,7 +86,7 @@ $(callEndpoint Dev terminalCoffee.productList)
 ```haskell
 {-# LANGUAGE TemplateHaskell, OverloadedRecordDot #-}
 import Yum
-import Control.Monad.IO.Token
+import Control.Monad.IO.Class
 
 $(do
   token <- liftIO $ tokenFromFile "mytoken"
@@ -101,7 +101,7 @@ If you don't have one yet, you can generate a link to add one:
 ```haskell
 {-# LANGUAGE TemplateHaskell, OverloadedRecordDot #-}
 import Yum
-import Control.Monad.IO.Token
+import Control.Monad.IO.Class
 
 $(do
   token <- liftIO $ tokenFromFile "mytoken"
@@ -114,7 +114,7 @@ $(do
 ```haskell
 {-# LANGUAGE TemplateHaskell, OverloadedRecordDot #-}
 import Yum
-import Control.Monad.IO.Token
+import Control.Monad.IO.Class
 
 $(do
   token <- liftIO $ tokenFromFile "mytoken"
@@ -129,7 +129,7 @@ If you don't have one yet, you can add an address like so:
 ```haskell
 {-# LANGUAGE TemplateHaskell, OverloadedRecordDot #-}
 import Yum
-import Control.Monad.IO.Token
+import Control.Monad.IO.Class
 
 $( do
     token <- liftIO $ tokenFromFile "mytoken"
@@ -155,7 +155,7 @@ $( do
 ```haskell
 {-# LANGUAGE TemplateHaskell, OverloadedRecordDot #-}
 import Yum
-import Control.Monad.IO.Token
+import Control.Monad.IO.Class
 
 $( do
     token <- liftIO $ tokenFromFile "mytoken"
