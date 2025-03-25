@@ -15,12 +15,14 @@ Naturally, it doesn't produce a runnable program, but that doesn't mean you won'
 I intend this to be usable by people with little experience in Haskell, but if
 you stray from the documented path you're pretty much on your own.
 
-Note: If you *really* want to spoil yourself and just find out what this does, check out the this-is-no-fun branch
+Note: If you *really* want to spoil yourself and just find out what this does, check out [the this-is-no-fun branch](https://github.com/voidus/terminal-coffkell/tree/this-is-no-fun)
 
 ## Using this library
 
 ### The easy way
 Note: This way is only easy if you have nix installed.
+
+Further note: There is no need to clone this repository.
 
 1. Create a new directory and `cd` inside it
 2. `nix --extra-experimental-features "nix-command flakes" develop github:voidus/terminal-coffkell#order`
@@ -57,8 +59,10 @@ But note that I have only proved it compiles, not tried it. (Wrong continent sor
 0. Subscribe to the mailing list (note that this also seems to work on the dev server maybe)
 
 ```haskell
-{-# LANGUAGE TemplateHaskell, OverloadedRecordDot #-}
+{-# LANGUAGE TemplateHaskell, OverloadedRecordDot, OverloadedStrings #-}
 import Yum
+
+-- Note that this one needs an additional extension compared to the others!
 
 $(callEndpoint Dev $ terminalCoffee.emailSubscribe "your@email.com")
 ```
