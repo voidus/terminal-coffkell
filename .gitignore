@@ -1,0 +1,7 @@
+/.direnv/
+/dist-newstyle/
+/*.log
+/*.aux
+/*.tex
+mytoken
+Whitepaper*
