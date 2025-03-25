@@ -21,7 +21,7 @@ you stray from the documented path you're pretty much on your own.
 Note: This way is only easy if you have nix installed.
 
 1. Create a new directory and `cd` inside it
-2. `nix --extra-experimental-features "nix-command flakes" develop github:voidus/terminal-coffkee#order`
+2. `nix --extra-experimental-features "nix-command flakes" develop github:voidus/terminal-coffkell#order`
 3. Create `Whatever.hs` with one of the examples below (the filename doesn't matter)
 
     Note that library has a safety: the COFFEETIME environment variable needs to
