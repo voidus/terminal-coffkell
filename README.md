@@ -1,8 +1,13 @@
 # Terminal Coffkell
 
+Order coffee with haskell!
+
 > The name sounds like a disease
 >
-> -- The inside of my head
+> -- A voice inside my head
+
+> [!WARNING]  
+> This probably shouldn't exist.
 
 This library allows you to order coffee from terminal.shop using haskell. Well, kinda.
 Naturally, it doesn't produce a runnable program, but that doesn't mean you won't order coffee.
@@ -18,8 +23,9 @@ Note: This way is only easy if you have nix installed.
 1. Create a new directory and `cd` inside it
 2. `nix --extra-experimental-features "nix-command flakes" develop github:voidus/terminal-coffkee#order`
 3. Create `Whatever.hs` with one of the examples below (the filename doesn't matter)
-  Note that library has a safety: the COFFEETIME environment variable needs to
-  be defined and non-empty for anything relevant to happen. For your convenience, the nix devshell automatically sets that environment variable. If you want to edit haskell files inside the devshell, you probably want to invoke your editor lik `env COFFEETIME= nvim`.
+
+    Note that library has a safety: the COFFEETIME environment variable needs to
+    be defined and non-empty for anything relevant to happen. For your convenience, the nix devshell automatically sets that environment variable. If you want to edit haskell files inside the devshell, you probably want to invoke your editor lik `env COFFEETIME= nvim`.
     
 4. Compile it with `ghc Whatever.hs`
 
