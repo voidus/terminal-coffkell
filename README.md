@@ -60,9 +60,10 @@ But note that I have only proved it compiles, not tried it. (Wrong continent sor
 
 ```haskell
 {-# LANGUAGE TemplateHaskell, OverloadedRecordDot, OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell, OverloadedRecordDot, DisambiguateRecordFields, OverloadedStrings #-}
 import Yum
-
--- Note that this one needs an additional extension compared to the others!
+import Control.Monad.IO.Class
+import Data.Text
 
 $(callEndpoint Dev $ terminalCoffee.emailSubscribe "your@email.com")
 ```
@@ -71,9 +72,11 @@ $(callEndpoint Dev $ terminalCoffee.emailSubscribe "your@email.com")
 1. Check out the products:
 
 ```haskell
-{-# LANGUAGE TemplateHaskell, OverloadedRecordDot #-}
-
+{-# LANGUAGE TemplateHaskell, OverloadedRecordDot, DisambiguateRecordFields, OverloadedStrings #-}
 import Yum
+import Control.Monad.IO.Class
+import Data.Text
+
 $(callEndpoint Dev terminalCoffee.productList)
 ```
 
@@ -84,9 +87,10 @@ $(callEndpoint Dev terminalCoffee.productList)
 3. Make sure you have a card on file:
 
 ```haskell
-{-# LANGUAGE TemplateHaskell, OverloadedRecordDot #-}
+{-# LANGUAGE TemplateHaskell, OverloadedRecordDot, DisambiguateRecordFields, OverloadedStrings #-}
 import Yum
 import Control.Monad.IO.Class
+import Data.Text
 
 $(do
   token <- liftIO $ tokenFromFile "mytoken"
@@ -99,9 +103,10 @@ Make sure to note down the ID for later.
 If you don't have one yet, you can generate a link to add one:
 
 ```haskell
-{-# LANGUAGE TemplateHaskell, OverloadedRecordDot #-}
+{-# LANGUAGE TemplateHaskell, OverloadedRecordDot, DisambiguateRecordFields, OverloadedStrings #-}
 import Yum
 import Control.Monad.IO.Class
+import Data.Text
 
 $(do
   token <- liftIO $ tokenFromFile "mytoken"
@@ -112,9 +117,10 @@ $(do
 4. Make sure you have a delivery address on file:
 
 ```haskell
-{-# LANGUAGE TemplateHaskell, OverloadedRecordDot #-}
+{-# LANGUAGE TemplateHaskell, OverloadedRecordDot, DisambiguateRecordFields, OverloadedStrings #-}
 import Yum
 import Control.Monad.IO.Class
+import Data.Text
 
 $(do
   token <- liftIO $ tokenFromFile "mytoken"
@@ -127,9 +133,10 @@ Again, make sure to note down the ID for later.
 If you don't have one yet, you can add an address like so:
 
 ```haskell
-{-# LANGUAGE TemplateHaskell, OverloadedRecordDot #-}
+{-# LANGUAGE TemplateHaskell, OverloadedRecordDot, DisambiguateRecordFields, OverloadedStrings #-}
 import Yum
 import Control.Monad.IO.Class
+import Data.Text
 
 $( do
     token <- liftIO $ tokenFromFile "mytoken"
@@ -153,9 +160,10 @@ $( do
 5. Not you're ready to order:
 
 ```haskell
-{-# LANGUAGE TemplateHaskell, OverloadedRecordDot #-}
+{-# LANGUAGE TemplateHaskell, OverloadedRecordDot, DisambiguateRecordFields, OverloadedStrings #-}
 import Yum
 import Control.Monad.IO.Class
+import Data.Text
 
 $( do
     token <- liftIO $ tokenFromFile "mytoken"
