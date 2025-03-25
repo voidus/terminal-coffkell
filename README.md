@@ -77,7 +77,7 @@ import Yum
 $(callEndpoint Dev terminalCoffee.productList)
 ```
 
-2. Get a token via `ssh dev.terminal.coffee -t tokens` and put it in a file.
+2. Get a token via `ssh dev.terminal.shop -t tokens` and put it in a file.
    I recomment `mytoken`. If you choose a different name, adjust the filename
     in the following examples
 
