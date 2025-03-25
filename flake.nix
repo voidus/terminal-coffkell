@@ -70,9 +70,9 @@
           let
             pkgs = self.legacyPackages.${system};
           in
-          pkgs.shellFor {
+          pkgs.mkShell {
             packages = with pkgs; [
-                (ghc.withPackages (ps: [ ps.terminal-coffkell ]))
+                (pkgs.ghc.withPackages (ps: [ ps.terminal-coffkell ]))
                 texliveSmall
                 texlivePackages.listing
             ];

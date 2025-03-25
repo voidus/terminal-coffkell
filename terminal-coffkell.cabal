@@ -75,7 +75,7 @@ library
   -- cabal-gild: discover src
   exposed-modules:
     Analytics
-    Foo
+    Examples
     Input
     Yum
 
@@ -88,12 +88,9 @@ library
     attoparsec,
     containers,
     deriving-aeson,
-    split,
-    servant-auth-client,
-    servant-auth,
     directory,
-    groom,
     filepath,
+    groom,
     http-client,
     http-client-tls,
     http-media,
@@ -103,23 +100,28 @@ library
     prettyprinter,
     process,
     servant,
+    servant-auth,
+    servant-auth-client,
     servant-client,
     servant-client-core,
     servant-conduit,
+    split,
     template-haskell,
 
-test-suite test
-  import: shared-properties
-  -- other-modules:
-  -- other-extensions:
-  type: exitcode-stdio-1.0
-  hs-source-dirs: test
-  main-is: MainShim.hs
-  -- main-is: Spec.hs
-  -- cabal-gild: discover test --exclude=test/MainShim.hs
-  other-modules:
-    Discover
-    Spec
-
-  build-depends:
-    terminal-coffkell
+-- Left as an exercise to the reader
+--
+-- test-suite test
+--   import: shared-properties
+--   -- other-modules:
+--   -- other-extensions:
+--   type: exitcode-stdio-1.0
+--   hs-source-dirs: test
+--   main-is: MainShim.hs
+--   -- main-is: Spec.hs
+--   -- cabal-gild: discover test --exclude=test/MainShim.hs
+--   other-modules:
+--     Discover
+--     Spec
+--
+--   build-depends:
+--     terminal-coffkell

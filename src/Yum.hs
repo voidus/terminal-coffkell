@@ -31,14 +31,15 @@ import Prelude hiding (Product, (&))
 -- listProducts :: Q [Dec]
 -- listProducts = callEndpoint terminalCoffee.productList
 
-order :: Auth.Token -> OrderInput -> Q [Dec]
-order token OrderInput{..} = do
+order :: Env -> Auth.Token -> OrderInput -> Q [Dec]
+order env token OrderInput{..} = do
   cardID <- do
     let path = toString cardIDFilename
     liftIO (doesFileExist path) >>= \case
       True -> decodeUtf8 <$> readFileBS path
       False -> error $ "Token file \"" <> toText path <> "\" not found"
-  callEndpoint $ terminalCoffee.orderCreate token Order{..}
+  callEndpoint env $ terminalCoffee.orderCreate token Order{..}
+
 
 data OrderInput = OrderInput
   { cardIDFilename :: Text
@@ -202,7 +203,7 @@ newtype AddressID = AddressID Text
 
 data TerminalCoffeeRoutes route = TerminalCoffeeRoutes
   { -- Product routes
-    productList :: route :- "product" :> BearerAuth :> Get '[JSON] (DataWrapped [Product])
+    productList :: route :- "product" :> Get '[JSON] (DataWrapped [Product])
   , productGet :: route :- "product" :> Capture "id" Text :> Get '[JSON] (DataWrapped Product)
   , -- Profile routes
     --   profileGet :: route :- "profile" :> BearerAuth :> Get '[JSON] (DataWrapped Profile)
@@ -253,16 +254,19 @@ data TerminalCoffeeRoutes route = TerminalCoffeeRoutes
 terminalCoffee :: TerminalCoffeeRoutes (AsClientT ClientM)
 terminalCoffee = genericClient
 
-call :: ClientM a -> IO (Either ClientError a)
-call endpoint = do
+call :: Env -> ClientM a -> IO (Either ClientError a)
+call env endpoint = do
   let log request = do
-        appendFile "whitepaper-log-request.txt" (groom request)
+        appendFile "Whitepaper-log-request.txt" (groom request)
         case request.requestBody of
-          RequestBodyLBS body -> appendFileLBS "whitepaper-log-request.txt" body
-          RequestBodyBS body -> appendFileBS "whitepaper-log-request.txt" body
-          _ -> appendFile "whitepaper-log-request.txt" "cant print body"
+          RequestBodyLBS body -> appendFileLBS "Whitepaper-log-request.txt" body
+          RequestBodyBS body -> appendFileBS "Whitepaper-log-request.txt" body
+          _ -> appendFile "Whitepaper-log-request.txt" "cant print body"
         pure request
-  let baseUrl = BaseUrl Https "api.dev.terminal.shop" 443 ""
+  let url = case env of
+        Dev -> "api.dev.terminal.shop"
+        Prod -> "api.terminal.shop"
+  let baseUrl = BaseUrl Https url 443 ""
   mgr <-
     newManager
       tlsManagerSettings
@@ -289,23 +293,27 @@ instance
   where
   showsPrec = error "unreachable"
 
+data Env = Dev | Prod
+
 callEndpoint ::
   (ToLatex a, Show a) =>
+  -- | The environment to run the API call in
+  Env ->
   -- | The API call to make
   ClientM a ->
   -- | Don't worry about it
   Q [Dec]
-callEndpoint doCall = do
+callEndpoint env doCall = do
   liftIO (List.lookup "COFFEETIME" <$> getEnvironment)
     >>= maybe (pure []) \_ -> do
-      liftIO (call doCall) >>= \case
+      liftIO (call env doCall) >>= \case
         Left err -> do
-          appendFile "whitepaper-log-response.txt" (groom err)
-          appendFile "whitepaper-log-response.txt" "\n"
+          appendFile "Whitepaper-log-response.txt" (groom err)
+          appendFile "Whitepaper-log-response.txt" "\n"
           renderResponse err
         Right res -> do
-          appendFile "whitepaper-log-response.txt" (groom res)
-          appendFile "whitepaper-log-response.txt" "\n"
+          appendFile "Whitepaper-log-response.txt" (groom res)
+          appendFile "Whitepaper-log-response.txt" "\n"
           renderResponse res
 
 renderResponse :: (ToLatex a) => a -> Q [Dec]
