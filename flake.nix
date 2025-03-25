@@ -1,5 +1,5 @@
 {
-  description = "yet another llm wrapper";
+  description = "Order coffee with haskell!";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -56,7 +56,6 @@
             [
               ghcid
               texliveSmall
-              # (texlive.combine { inherit (texlive) scheme-small listings;})
             ]
             ++ (with haskell.packages.${ghc}; [
               cabal-install
@@ -74,7 +73,6 @@
             packages = with pkgs; [
                 (pkgs.ghc.withPackages (ps: [ ps.terminal-coffkell ]))
                 texliveSmall
-                texlivePackages.listing
             ];
             COFFEETIME = "yes please";
           };

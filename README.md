@@ -18,6 +18,9 @@ Note: This way is only easy if you have nix installed.
 1. Create a new directory and `cd` inside it
 2. `nix --extra-experimental-features "nix-command flakes" develop github:voidus/terminal-coffkee#order`
 3. Create `Whatever.hs` with one of the examples below (the filename doesn't matter)
+  Note that library has a safety: the COFFEETIME environment variable needs to
+  be defined and non-empty for anything relevant to happen. For your convenience, the nix devshell automatically sets that environment variable. If you want to edit haskell files inside the devshell, you probably want to invoke your editor lik `env COFFEETIME= nvim`.
+    
 4. Compile it with `ghc Whatever.hs`
 
 ### The docker way
@@ -36,6 +39,7 @@ Note: This is downloading a lot of stuff into the container. You probably don't 
 ### Other ways
 
 Left as an exercise to the reader.
+Note that the library will not do anything unless the COFFEETIME variable is set. This is automatically done
 
 ## How to order
 

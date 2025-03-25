@@ -40,7 +40,6 @@ order env token OrderInput{..} = do
       False -> error $ "Token file \"" <> toText path <> "\" not found"
   callEndpoint env $ terminalCoffee.orderCreate token Order{..}
 
-
 data OrderInput = OrderInput
   { cardIDFilename :: Text
   , addressID :: Text
@@ -305,16 +304,18 @@ callEndpoint ::
   Q [Dec]
 callEndpoint env doCall = do
   liftIO (List.lookup "COFFEETIME" <$> getEnvironment)
-    >>= maybe (pure []) \_ -> do
-      liftIO (call env doCall) >>= \case
-        Left err -> do
-          appendFile "Whitepaper-log-response.txt" (groom err)
-          appendFile "Whitepaper-log-response.txt" "\n"
-          renderResponse err
-        Right res -> do
-          appendFile "Whitepaper-log-response.txt" (groom res)
-          appendFile "Whitepaper-log-response.txt" "\n"
-          renderResponse res
+    >>= maybe (pure []) \case
+      [] -> mempty
+      _ -> do
+        liftIO (call env doCall) >>= \case
+          Left err -> do
+            appendFile "Whitepaper-log-response.txt" (groom err)
+            appendFile "Whitepaper-log-response.txt" "\n"
+            renderResponse err
+          Right res -> do
+            appendFile "Whitepaper-log-response.txt" (groom res)
+            appendFile "Whitepaper-log-response.txt" "\n"
+            renderResponse res
 
 renderResponse :: (ToLatex a) => a -> Q [Dec]
 renderResponse response = do
