@@ -74,7 +74,9 @@ library
   import: shared-properties
   -- cabal-gild: discover src
   exposed-modules:
+    Analytics
     Foo
+    Input
     Yum
 
   -- other-modules:
@@ -85,8 +87,8 @@ library
     aeson,
     attoparsec,
     containers,
-    process,
     deriving-aeson,
+    split,
     filepath,
     http-client,
     http-client-tls,
@@ -95,6 +97,7 @@ library
     iso8601-time,
     package-version,
     prettyprinter,
+    process,
     servant,
     servant-client,
     servant-client-core,
