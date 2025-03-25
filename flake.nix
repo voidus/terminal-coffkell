@@ -45,7 +45,7 @@
         terminal-coffkell = self.legacyPackages.${system}.terminal-coffkell;
       });
 
-      devShells = forAllSystems (system: {
+      devShells = forAllSystems (system:{
         default = self.legacyPackages.${system}.haskell.packages.${ghc}.shellFor {
           withHoogle = true;
           packages = p: [
@@ -56,6 +56,7 @@
             [
               ghcid
               texliveSmall
+              # (texlive.combine { inherit (texlive) scheme-small listings;})
             ]
             ++ (with haskell.packages.${ghc}; [
               cabal-install
@@ -73,6 +74,7 @@
             packages = with pkgs; [
                 (ghc.withPackages (ps: [ ps.terminal-coffkell ]))
                 texliveSmall
+                texlivePackages.listing
             ];
             COFFEETIME = "yes please";
           };
