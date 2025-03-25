@@ -3,6 +3,7 @@ name: terminal-coffkell
 version: 0.1.0.0
 license-file: LICENSE
 author: Simon Kohlmeyer
+description: Order coffee with haskell!
 maintainer: void@wthack.de
 copyright: (c)
 build-type: Simple

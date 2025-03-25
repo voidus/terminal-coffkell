@@ -9,7 +9,8 @@ import Yum
 
 -- $(callEndpoint Dev $ terminalCoffee.emailSubscribe "your@email.com")
 
-$( callEndpoint Dev $ terminalCoffee.productList)
+-- $( callEndpoint Dev $ terminalCoffee.productList)
+
 
 -- $( do
 --     token <- liftIO $ tokenFromFile "mytoken"

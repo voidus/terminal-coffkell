@@ -15,9 +15,11 @@ Naturally, it doesn't produce a runnable program, but that doesn't mean you won'
 I intend this to be usable by people with little experience in Haskell, but if
 you stray from the documented path you're pretty much on your own.
 
+Note: If you *really* want to spoil yourself and just find out what this does, check out the this-is-no-fun branch
+
 ## Using this library
 
-### The easy way:
+### The easy way
 Note: This way is only easy if you have nix installed.
 
 1. Create a new directory and `cd` inside it
