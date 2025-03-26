@@ -186,8 +186,7 @@ Honestly, same.
 Maybe. It shouldn't, but see the note at the top.
 
 #### Can I actually order coffee with this?
-I hope? It works against the dev environment. As I wrote, I can't order since I'm in EU.
-If you successfully ordered through this, please let me know!
+Unclear. I did attempt to order but things look complicated right now.
 
 #### Is this AI slop?
 Of course. It's a paper produced in 2025 (or whatever year it is).
