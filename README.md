@@ -156,7 +156,7 @@ $( do
 ```
 
 
-5. Not you're ready to order:
+5. Now you're ready to order:
 
 ```haskell
 {-# LANGUAGE TemplateHaskell, OverloadedRecordDot, DisambiguateRecordFields, OverloadedStrings #-}
