@@ -59,7 +59,6 @@ But note that I have only proved it compiles, not tried it. (Wrong continent sor
 0. Subscribe to the mailing list (note that this also seems to work on the dev server maybe)
 
 ```haskell
-{-# LANGUAGE TemplateHaskell, OverloadedRecordDot, OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell, OverloadedRecordDot, DisambiguateRecordFields, OverloadedStrings #-}
 import Yum
 import Control.Monad.IO.Class
